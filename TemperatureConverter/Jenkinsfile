@@ -41,13 +41,13 @@ pipeline {
 	steps{
     timeout(time: 1, unit: 'HOURS') {
       emailext to: 'Supriya.Dash@prolifics.com', body: "You are assigned to approve a jenkins job. Please open the link ${env.BUILD_URL} and provide your input on approval of deploying the job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
                 subject: "Jenkins Build is in wait state for approval of job ${env.JOB_NAME}"
 	input 'Do you approve the deployment?'
 
     }
 	}
   }
+  
 		
         // Either override and deploy the BAR (with or without broker file), or upload it to UCD so it can be deployed from there (one of the below steps should be uncommented)
         
