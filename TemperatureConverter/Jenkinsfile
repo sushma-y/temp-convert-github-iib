@@ -40,9 +40,9 @@ pipeline {
   stage('Promotion') {
 	steps{
     timeout(time: 1, unit: 'HOURS') {
-      emailext body: "You are assigned to approve a jenkins job. Please open the link ${env.BUILD_URL} and provide your input on approval of deploying the job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+      emailext to: 'Supriya.Dash@prolifics.com', body: "You are assigned to approve a jenkins job. Please open the link ${env.BUILD_URL} and provide your input on approval of deploying the job ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build is in wait state for approval of job ${env.JOB_NAME}, to: 'Akanksha.Pandey@prolifics.com'"
+                subject: "Jenkins Build is in wait state for approval of job ${env.JOB_NAME}"
 	input 'Do you approve the deployment?'
 
     }
