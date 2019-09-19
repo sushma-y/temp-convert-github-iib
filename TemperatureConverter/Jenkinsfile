@@ -37,10 +37,12 @@ pipeline {
             }
         }   
         
-stage 'Promotion' {
+stage('Promotion') {
+	steps{
     timeout(time: 1, unit: 'HOURS') {
       input 'Deploy to INT?'
     }
+	}
   }
 		
         // Either override and deploy the BAR (with or without broker file), or upload it to UCD so it can be deployed from there (one of the below steps should be uncommented)
