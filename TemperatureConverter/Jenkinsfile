@@ -37,10 +37,14 @@ pipeline {
             }
         }   
         
-stage('Promotion') {
+  stage('Promotion') {
 	steps{
     timeout(time: 1, unit: 'HOURS') {
-      input 'Deploy to INT?'
+      emailext body: "Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+	input 'Do you approve the deployment to environment INT?'
+
     }
 	}
   }
