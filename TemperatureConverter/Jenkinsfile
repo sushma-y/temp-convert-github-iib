@@ -37,13 +37,15 @@ pipeline {
             }
         }   
         
-		
-		stage 'promotion'
+		stage('promotion'){
+		steps{
 def userInput = input(
  id: 'userInput', message: 'Let\'s promote?', parameters: [
  [$class: 'TextParameterDefinition', defaultValue: 'uat', description: 'Environment', name: 'env']
 ])
 echo ("Env: "+userInput)
+}
+}
 		
         // Either override and deploy the BAR (with or without broker file), or upload it to UCD so it can be deployed from there (one of the below steps should be uncommented)
         
