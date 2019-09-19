@@ -38,7 +38,7 @@ pipeline {
         }   
         
 		
-		stage 'approve' timeout(time: 5, unit: 'MINUTES') {
+		stage 'approve' timeout(time: 5, unit: 'DAYS') {
 input message: 'Do you want to deploy?', submitter: 'sushma.yarlagadda@prolifics.com'
 }	
 		
