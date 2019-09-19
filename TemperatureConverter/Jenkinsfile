@@ -37,6 +37,12 @@ pipeline {
             }
         }   
         
+		
+		stage 'approve' timeout(time: 5, unit: 'MINUTES') {
+input message: 'Do you want to deploy?', submitter: 'sushma.yarlagadda@prolifics.com'
+}	
+		
+		
         // Either override and deploy the BAR (with or without broker file), or upload it to UCD so it can be deployed from there (one of the below steps should be uncommented)
         
         stage('Override and Deploy BAR') {
