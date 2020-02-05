@@ -1,14 +1,16 @@
 pipeline {
+
     // Instructs Jenkins to use the buildconductor docker image to run this pipeline Test
     
     agent any
+
     stages {
     
         // Pull down source code from Git repo
         
        stage('Checkout Code'){
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'load']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sitaramaprasad-e/temp-convert-github-iib.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'load']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sushma-y/temp-convert-github-iib.git']]])
             }
           
        }   
