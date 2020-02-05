@@ -1,5 +1,5 @@
 // Scripted Pipeline with stages
-node  ('Jenkins'){
+node  ('master'){
   stage('Source') { // Get code
     // get code from our Git repository
     git 'https://github.com/sushma-y/temp-convert-github-iib.git'
