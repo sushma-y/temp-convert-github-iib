@@ -21,32 +21,8 @@ pipeline {
             }
           
        }   
-       
-       stage('Checkout .brokerFile'){
-            steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'brokerFiles-load']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/sitaramaprasad-e/brokerFiles-iib.git']]])
-            }
-          
-       }  
-       
-       // Build BAR file from source code
-       
-        stage('Build BAR') {
-            steps {
-                sh "/buildconductor/iib/run-automation.sh build tempconvert TemperatureConverter" 
-            }
-        }   
-  
-		
-        // Either override and deploy the BAR (with or without broker file), or upload it to UCD so it can be deployed from there (one of the below steps should be uncommented)
-        
-        stage('Override and Deploy BAR') {
-         steps {
-                sh "/buildconductor/iib/run-automation.sh overrideAndDeploy tempconvert na na na TEST iibuser iibuser TemperatureConverter TemperatureConverter/overrides/development.properties ../brokerFiles-load/DEV/TEST.broker"
-        
-          }
-        }       
-    }
+	   }
+
 	// Sending email notifications
 post {
         always {
